@@ -31,5 +31,6 @@
 - Adicionados templates de **Segurança** (Senha Alterada, MFA, Identidade) para notificações do sistema.
 - Corrigido fluxo de **Reset de Senha** com página dedicada `/update-password`.
 - Adicionado suporte a **Magic Links com Hash** (`#access_token`) via `AuthHashHandler`.
+- Implementado fluxo de **Completar Perfil** (`/complete-profile`) para usuários convidados.
 - Validado fluxo de login com chaves reais do usuário.
 ---
