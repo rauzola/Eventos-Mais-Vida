@@ -1,72 +1,109 @@
 import { login, signup } from "./actions";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
+import { Heart, Lock, Mail, Eye, EyeOff } from "lucide-react";
+import Link from "next/link";
 
 export default async function LoginPage(props: {
-    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
     const searchParams = await props.searchParams;
     return (
-        <div className="flex min-h-screen flex-col items-center justify-center bg-gray-50 px-4 py-8">
-            <div className="w-full max-w-sm space-y-8 rounded-lg bg-white p-8 shadow-md">
-                <div>
-                    <h2 className="text-center text-3xl font-extrabold text-gray-900">
-                        Acesse sua conta
-                    </h2>
-                    <p className="mt-2 text-center text-sm text-gray-600">
-                        Ou{" "}
-                        <button formAction={signup} className="font-medium text-blue-600 hover:text-blue-500">
-                            crie uma nova conta
-                        </button>
-                    </p>
+        <div className="flex min-h-screen flex-col items-center justify-center bg-[#EBF2FF] px-4 py-8">
+            <div className="mb-8 flex flex-col items-center gap-2">
+                <div className="flex items-center gap-2 text-2xl font-bold text-blue-600">
+                    <Heart className="h-8 w-8 fill-blue-600" />
+                    <span>Projeto Mais Vida</span>
                 </div>
+                <p className="text-gray-600">
+                    Bem-vindo de volta! Faça login para continuar.
+                </p>
+            </div>
 
-                {searchParams?.error && (
-                    <div className="rounded-md bg-red-50 p-4 text-sm text-red-700">
-                        {searchParams.error}
-                    </div>
-                )}
-
-                <form className="mt-8 space-y-6">
-                    <div className="-space-y-px rounded-md shadow-sm">
-                        <div>
-                            <label htmlFor="email-address" className="sr-only">
-                                Email
-                            </label>
-                            <input
-                                id="email-address"
-                                name="email"
-                                type="email"
-                                autoComplete="email"
-                                required
-                                className="relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 pl-3"
-                                placeholder="Email"
-                            />
+            <Card className="w-full max-w-[450px] shadow-lg border-none">
+                <CardHeader className="space-y-1 text-center pb-2">
+                    <CardTitle className="text-2xl font-bold text-gray-900">Login</CardTitle>
+                    <CardDescription>
+                        Entre com suas credenciais para acessar sua conta
+                    </CardDescription>
+                </CardHeader>
+                <CardContent>
+                    {searchParams?.error && (
+                        <div className="mb-4 rounded-md bg-red-50 p-4 text-sm text-red-700">
+                            {searchParams.error}
                         </div>
-                        <div>
-                            <label htmlFor="password" className="sr-only">
-                                Senha
-                            </label>
-                            <input
-                                id="password"
-                                name="password"
-                                type="password"
-                                autoComplete="current-password"
-                                required
-                                className="relative block w-full rounded-b-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 pl-2"
-                                placeholder="Senha"
-                            />
+                    )}
+                    <form className="space-y-6">
+                        <div className="space-y-2">
+                            <Label htmlFor="email">E-mail</Label>
+                            <div className="relative">
+                                <Mail className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                                <Input
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    placeholder="seu@email.com"
+                                    required
+                                    className="pl-10 h-11"
+                                />
+                            </div>
                         </div>
-                    </div>
+                        <div className="space-y-2">
+                            <Label htmlFor="password">Senha</Label>
+                            <div className="relative">
+                                <Lock className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                                <Input
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    placeholder="Digite sua senha"
+                                    required
+                                    className="pl-10 pr-10 h-11"
+                                />
+                                <button
+                                    type="button"
+                                    className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
+                                >
+                                    <EyeOff className="h-5 w-5" />
+                                </button>
+                            </div>
+                        </div>
 
-                    <div>
-                        <button
+                        <Button
                             formAction={login}
-                            className="group relative flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                            className="w-full h-11 bg-blue-600 font-semibold hover:bg-blue-700 text-lg shadow-blue-200 shadow-lg"
                         >
                             Entrar
+                        </Button>
+                    </form>
+                </CardContent>
+                <CardFooter className="flex flex-col gap-4 text-center text-sm text-gray-600 pt-0 pb-8">
+                    <p>
+                        Não tem uma conta?{" "}
+                        <button
+                            formAction={signup}
+                            className="font-medium text-blue-600 hover:text-blue-500 hover:underline"
+                        >
+                            Cadastre-se
                         </button>
-                    </div>
-                </form>
-            </div>
+                    </p>
+                    <Link
+                        href="/forgot-password"
+                        className="text-gray-500 hover:text-gray-700 underline decoration-dotted underline-offset-4"
+                    >
+                        Esqueceu sua senha?
+                    </Link>
+                </CardFooter>
+            </Card>
         </div>
     );
 }
