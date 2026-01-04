@@ -13,3 +13,17 @@
 - Simplificado `src/app/page.tsx` para usar apenas Tailwind CSS básico.
 - Criado `doc/planning.md` e estrutura de diretórios `doc/logs`.
 ---
+---
+**Data:** 04/01/2026 | **Hora:** 00:32
+
+**O que foi feito:**
+- Implementação completa da Autenticação via Supabase Auth.
+- Configuração de Login, Cadastro, Logout e Rotas Protegidas.
+
+**Como foi feito:**
+- Instalado `@supabase/supabase-js` e `@supabase/ssr`.
+- Criado padrão de clients em `src/utils/supabase/` (Client, Server, Middleware).
+- Configurado `middleware.ts` para proteção de rotas e gestão de sessão (cookies).
+- Criada página de login (`src/app/login`) com Server Actions.
+- Validado fluxo de login com chaves reais do usuário.
+---
