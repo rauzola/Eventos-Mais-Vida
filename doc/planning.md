@@ -9,4 +9,5 @@
     - [x] Instalação de dependências e clientes Supabase
     - [x] Middleware e Proteção de Rotas
     - [x] UI de Login e Ações de Servidor
+    - [ ] Integração com Google OAuth (Futuro)
 

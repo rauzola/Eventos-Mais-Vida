@@ -1,7 +1,8 @@
 # Regras de Negócio e Projeto
 
 ## 1. Autenticação e Segurança (RBAC)
-- **Sistema de Login**: O sistema deve utilizar exclusivamente o **Supabase Auth**.
+- **Sistema de Login**: O sistema deve utilizar **Supabase Auth**.
+    - Métodos permitidos: **Email/Senha** e **Google OAuth** (Híbrido).
 - **Gestão de Senhas**: Nenhuma senha de usuário deve ser armazenada em tabelas criadas manualmente.
 - **Hierarquia de Permissões (Roles)**:
     1.  **USER**: Usuário padrão/Participante. Pode se inscrever em eventos e ver seu próprio perfil.

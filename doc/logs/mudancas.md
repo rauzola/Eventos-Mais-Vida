@@ -27,5 +27,9 @@
 - Criada página de login (`src/app/login`) com Server Actions.
 - Refinada Interface de Login usando **shadcn/ui** (Card, Input, Label) combinando com mockup visual.
 - Implementado fluxo de **Cadastro Dedicado** (`/signup`) e **Recuperação de Senha** (`/forgot-password`).
+- Criados lindos **Templates de Email HTML** para o Supabase (Reset Senha, Confirmação, Convite, Magic Link) em `src/emails/`.
+- Adicionados templates de **Segurança** (Senha Alterada, MFA, Identidade) para notificações do sistema.
+- Corrigido fluxo de **Reset de Senha** com página dedicada `/update-password`.
+- Adicionado suporte a **Magic Links com Hash** (`#access_token`) via `AuthHashHandler`.
 - Validado fluxo de login com chaves reais do usuário.
 ---
