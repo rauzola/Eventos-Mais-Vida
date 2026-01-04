@@ -36,3 +36,18 @@
 - Corrigido problema de recursão infinita nas políticas de segurança do banco.
 - Validado fluxo de login com chaves reais do usuário.
 ---
+---
+**Data:** 04/01/2026 | **Hora:** 02:25
+
+**O que foi feito:**
+- [Implementação do Layout do Dashboard (V1) com design "Lovable"]
+- [Refatoração da Sidebar para componente Fixo e Responsivo]
+- [Criação da Landing Page Pública]
+- [Correção de erros de serialização no Next.js (Client Components)]
+
+**Como foi feito:**
+- [Frontend]: Criado layout em `src/app/(authenticated)/layout.tsx` usando `position: fixed` para sidebar.
+- [UI/UX]: Implementado design system com gradientes, blur e ícones Lucide coloridos.
+- [Arquitetura]: Separada lógica de `Sidebar` (Server) e `SidebarContent` (Client) para permitir *active states* e evitar erros de montagem.
+- [Navegação]: Configurada Home Page (`/`) para redirecionar usuários logados para a dashboard ou exibir landing page para visitantes.
+---
