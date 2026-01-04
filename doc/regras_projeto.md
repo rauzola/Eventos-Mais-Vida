@@ -1,17 +1,23 @@
 # Regras de Negócio e Projeto
 
-## 1. Autenticação e Segurança
+## 1. Autenticação e Segurança (RBAC)
 - **Sistema de Login**: O sistema deve utilizar exclusivamente o **Supabase Auth**.
 - **Gestão de Senhas**: Nenhuma senha de usuário deve ser armazenada em tabelas criadas manualmente.
-- **Acesso a Dados (RLS)**:
-    - Usuários só podem visualizar/editar seus próprios perfis.
-    - Organizadores só podem editar eventos que eles criaram (exceto Admins).
-    - Perfis de usuários comuns são parcialmente públicos (apenas nome/avatar) para listas de participantes, se aplicável, mas dados sensíveis devem ser privados.
+- **Hierarquia de Permissões (Roles)**:
+    1.  **USER**: Usuário padrão/Participante. Pode se inscrever em eventos e ver seu próprio perfil.
+    2.  **STAFF**: Voluntários e equipes de serviço. Pode ver listas de presença parciais.
+    3.  **COORD**: Coordenadores de frentes ou eventos específicos. Pode gerenciar inscrições do seu evento.
+    4.  **CONCELHO**: Diretoria/Conselho. Acesso irrestrito a relatórios e visualização de todos os eventos/inscrições.
+    5.  **ADMIN**: Superusuário. Acesso total ao sistema, incluindo configurações e gestão de usuários.
 
-## 2. Gestão de Eventos
+## 2. Acesso a Dados (RLS)
+- **USER**: Vê apenas seus dados.
+- **STAFF+**: Vê dados necessários para operação (lista de inscritos, etc), conforme filtros seguros.
+
+## 3. Gestão de Eventos
 - Um evento só aparece na listagem pública se `is_published` for `true`.
-- Eventos passados não devem permitir novas inscrições, mas devem permanecer visíveis como histórico.
+- Eventos passados não devem permitir novas inscrições.
 
-## 3. Inscrições
+## 4. Inscrições
 - Um usuário não pode se inscrever duas vezes no mesmo evento (restrição de unicidade par `user_id` + `event_id`).
-- Cancelamentos de inscrição devem manter o registro, apenas alterando o status para `cancelled`.
+- Cancelamentos mantêm o registro com status `cancelled`.

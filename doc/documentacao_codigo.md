@@ -13,7 +13,7 @@ Armazena dados de perfil do usuário, estendendo a tabela `auth.users` do Supaba
 | `email` | TEXT | Email do usuário (sincronizado). |
 | `full_name` | TEXT | Nome completo. |
 | `avatar_url` | TEXT | URL da imagem de avatar. |
-| `role` | TEXT | Papel no sistema (`admin`, `organizer`, `user`). Default: `user`. |
+| `role` | TEXT | Papel no sistema: `USER`, `STAFF`, `COORD`, `CONCELHO`, `ADMIN`. Default: `USER`. |
 | `created_at` | TIMESTAMPTZ | Data de criação. |
 | `updated_at` | TIMESTAMPTZ | Data de atualização. |
 
@@ -49,4 +49,9 @@ Vínculo entre usuários e eventos (inscrições).
 ## Escolhas Tecnológicas
 - **Autenticação**: Supabase Auth (Native).
 - **Banco de Dados**: PostgreSQL (via Supabase).
+- **ORM/Query Builder**: Supabase Client (Nativo) - `@supabase/supabase-js`. Decidido por suportar RLS nativamente e simplificar a arquitetura.
+    - *Nota*: Evitar ORMs como Prisma para este projeto para manter compatibilidade total com Auth/RLS sem adapters complexos.
+- **Gestão de Conteúdo (CMS)**:
+    - Textos e conteúdos dinâmicos simples serão geridos via tabelas do Supabase (`pages_content` se necessário).
+    - Ferramentas externas de CMS (ex: Prismic) **não** serão utilizadas na v1 para reduzir complexidade.
 - **Segurança**: RLS (Row Level Security) nas tabelas para isolamento de dados por usuário.
