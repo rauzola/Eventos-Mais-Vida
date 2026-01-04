@@ -32,5 +32,7 @@
 - Corrigido fluxo de **Reset de Senha** com página dedicada `/update-password`.
 - Adicionado suporte a **Magic Links com Hash** (`#access_token`) via `AuthHashHandler`.
 - Implementado fluxo de **Completar Perfil** (`/complete-profile`) para usuários convidados.
+- Implementado sistema de **Permissões (RBAC)** completo com proteção de dados (RLS) e verificação de Roles.
+- Corrigido problema de recursão infinita nas políticas de segurança do banco.
 - Validado fluxo de login com chaves reais do usuário.
 ---

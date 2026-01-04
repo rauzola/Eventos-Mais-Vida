@@ -36,11 +36,15 @@ export async function getUserProfile() {
 
     if (!user) return null;
 
-    const { data: profile } = await supabase
+    const { data: profile, error } = await supabase
         .from("profiles")
         .select("*")
         .eq("id", user.id)
         .single();
+
+    if (error) {
+        console.error("Erro ao buscar perfil RBAC:", JSON.stringify(error, null, 2));
+    }
 
     return { user, profile };
 }
