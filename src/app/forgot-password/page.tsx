@@ -1,4 +1,4 @@
-import { login, signup } from "./actions";
+import { forgotPassword } from "./actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -10,10 +10,10 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
-import { Heart, Lock, Mail, Eye, EyeOff } from "lucide-react";
+import { Heart, Mail, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
-export default async function LoginPage(props: {
+export default async function ForgotPasswordPage(props: {
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
     const searchParams = await props.searchParams;
@@ -24,21 +24,25 @@ export default async function LoginPage(props: {
                     <Heart className="h-8 w-8 fill-blue-600" />
                     <span>Projeto Mais Vida</span>
                 </div>
-                <p className="text-gray-600">
-                    Bem-vindo de volta! Faça login para continuar.
-                </p>
             </div>
 
             <Card className="w-full max-w-[450px] shadow-lg border-none">
                 <CardHeader className="space-y-1 text-center pb-2">
-                    <CardTitle className="text-2xl font-bold text-gray-900">Login</CardTitle>
+                    <CardTitle className="text-2xl font-bold text-gray-900">
+                        Recuperar Senha
+                    </CardTitle>
                     <CardDescription>
-                        Entre com suas credenciais para acessar sua conta
+                        Digite seu e-mail para receber o link de redefinição
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
+                    {searchParams?.message && (
+                        <div className="mb-4 rounded-md bg-green-50 p-4 text-sm text-green-700 border border-green-200">
+                            {searchParams.message}
+                        </div>
+                    )}
                     {searchParams?.error && (
-                        <div className="mb-4 rounded-md bg-red-50 p-4 text-sm text-red-700">
+                        <div className="mb-4 rounded-md bg-red-50 p-4 text-sm text-red-700 border border-red-200">
                             {searchParams.error}
                         </div>
                     )}
@@ -57,50 +61,21 @@ export default async function LoginPage(props: {
                                 />
                             </div>
                         </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="password">Senha</Label>
-                            <div className="relative">
-                                <Lock className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                                <Input
-                                    id="password"
-                                    name="password"
-                                    type="password"
-                                    placeholder="Digite sua senha"
-                                    required
-                                    className="pl-10 pr-10 h-11"
-                                />
-                                <button
-                                    type="button"
-                                    className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
-                                >
-                                    <EyeOff className="h-5 w-5" />
-                                </button>
-                            </div>
-                        </div>
 
                         <Button
-                            formAction={login}
+                            formAction={forgotPassword}
                             className="w-full h-11 bg-blue-600 font-semibold hover:bg-blue-700 text-lg shadow-blue-200 shadow-lg"
                         >
-                            Entrar
+                            Enviar Link
                         </Button>
                     </form>
                 </CardContent>
                 <CardFooter className="flex flex-col gap-4 text-center text-sm text-gray-600 pt-0 pb-8">
-                    <p>
-                        Não tem uma conta?{" "}
-                        <Link
-                            href="/signup"
-                            className="font-medium text-blue-600 hover:text-blue-500 hover:underline"
-                        >
-                            Cadastre-se
-                        </Link>
-                    </p>
                     <Link
-                        href="/forgot-password"
-                        className="text-gray-500 hover:text-gray-700 underline decoration-dotted underline-offset-4"
+                        href="/login"
+                        className="flex items-center gap-2 font-medium text-gray-600 hover:text-gray-900"
                     >
-                        Esqueceu sua senha?
+                        <ArrowLeft className="h-4 w-4" /> Voltar para o Login
                     </Link>
                 </CardFooter>
             </Card>

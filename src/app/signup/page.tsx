@@ -1,4 +1,4 @@
-import { login, signup } from "./actions";
+import { signup } from "./actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -10,10 +10,10 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
-import { Heart, Lock, Mail, Eye, EyeOff } from "lucide-react";
+import { Heart, Lock, Mail, Eye, EyeOff, User } from "lucide-react";
 import Link from "next/link";
 
-export default async function LoginPage(props: {
+export default async function SignupPage(props: {
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
     const searchParams = await props.searchParams;
@@ -25,15 +25,15 @@ export default async function LoginPage(props: {
                     <span>Projeto Mais Vida</span>
                 </div>
                 <p className="text-gray-600">
-                    Bem-vindo de volta! Faça login para continuar.
+                    Crie sua conta e participe dos eventos.
                 </p>
             </div>
 
             <Card className="w-full max-w-[450px] shadow-lg border-none">
                 <CardHeader className="space-y-1 text-center pb-2">
-                    <CardTitle className="text-2xl font-bold text-gray-900">Login</CardTitle>
+                    <CardTitle className="text-2xl font-bold text-gray-900">Cadastro</CardTitle>
                     <CardDescription>
-                        Entre com suas credenciais para acessar sua conta
+                        Preencha os dados abaixo para criar sua conta
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -65,8 +65,9 @@ export default async function LoginPage(props: {
                                     id="password"
                                     name="password"
                                     type="password"
-                                    placeholder="Digite sua senha"
+                                    placeholder="Crie uma senha segura"
                                     required
+                                    minLength={6}
                                     className="pl-10 pr-10 h-11"
                                 />
                                 <button
@@ -79,29 +80,23 @@ export default async function LoginPage(props: {
                         </div>
 
                         <Button
-                            formAction={login}
+                            formAction={signup}
                             className="w-full h-11 bg-blue-600 font-semibold hover:bg-blue-700 text-lg shadow-blue-200 shadow-lg"
                         >
-                            Entrar
+                            Criar Conta
                         </Button>
                     </form>
                 </CardContent>
                 <CardFooter className="flex flex-col gap-4 text-center text-sm text-gray-600 pt-0 pb-8">
                     <p>
-                        Não tem uma conta?{" "}
+                        Já tem uma conta?{" "}
                         <Link
-                            href="/signup"
+                            href="/login"
                             className="font-medium text-blue-600 hover:text-blue-500 hover:underline"
                         >
-                            Cadastre-se
+                            Faça login
                         </Link>
                     </p>
-                    <Link
-                        href="/forgot-password"
-                        className="text-gray-500 hover:text-gray-700 underline decoration-dotted underline-offset-4"
-                    >
-                        Esqueceu sua senha?
-                    </Link>
                 </CardFooter>
             </Card>
         </div>

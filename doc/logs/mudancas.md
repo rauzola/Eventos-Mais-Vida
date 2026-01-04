@@ -26,5 +26,6 @@
 - Configurado `middleware.ts` para proteção de rotas e gestão de sessão (cookies).
 - Criada página de login (`src/app/login`) com Server Actions.
 - Refinada Interface de Login usando **shadcn/ui** (Card, Input, Label) combinando com mockup visual.
+- Implementado fluxo de **Cadastro Dedicado** (`/signup`) e **Recuperação de Senha** (`/forgot-password`).
 - Validado fluxo de login com chaves reais do usuário.
 ---
